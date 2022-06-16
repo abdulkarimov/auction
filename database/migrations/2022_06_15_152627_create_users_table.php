@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('name');
             $table->string('password');
+            $table->integer('rating')->default(100);
+            $table->string('balance')->nullable();
             $table->timestamps();
         });
     }

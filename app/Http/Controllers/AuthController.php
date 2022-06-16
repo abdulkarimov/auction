@@ -21,13 +21,15 @@ class AuthController extends Controller
             $newUser->email = $googleUser->email;
             $newUser->name = $googleUser->name;
             $newUser->password = '';
+            $newUser->rating = 100;
+            $newUser->balance = 1000;
             $newUser->save();
             session(['user' => $newUser]);
         }else{
             session(['user' => $user]);
         }
 
-        return view('index', ['user' => session('user')]);
+        return to_route('index');
     }
 
     public function signIn(Request $request){

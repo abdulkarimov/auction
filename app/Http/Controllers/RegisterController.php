@@ -18,6 +18,8 @@ class RegisterController extends Controller
             $newUser->email = $request->email;
             $newUser->name = $request->name;
             $newUser->password = $request->password;
+            $newUser->rating = 100;
+            $newUser->balance = 1000;
             $newUser->save();
             session(['user' => $newUser]);
     
