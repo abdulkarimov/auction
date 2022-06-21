@@ -47,3 +47,4 @@ Route::get('myBuyLots',[UserController::class, 'myBuyLots'])->name('myBuyLots');
 Route::get('good/{id}',[UserController::class, 'good'])->name('good');
 Route::get('bad/{id}',[UserController::class, 'bad'])->name('bad');
 
+Route::get('/searchItem',  [UserController::class, 'searchItem']);

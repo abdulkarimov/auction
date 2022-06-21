@@ -33,6 +33,9 @@ class AuthController extends Controller
     }
 
     public function signIn(Request $request){
-       return User::where('email', $request->email)->where('password', $request->password)->first();
+        $user = User::where('email', $request->email)->where('password', $request->password)->first(); 
+        session(['user' => $user]);
+        if($user)
+       return $user;
     }
 }

@@ -18,6 +18,8 @@
         <button id='myBuyLots' onclick="window.location.href='/myBuyLots'" >my Buy Lots</button>
         <span>rating: {{session('user')->rating}}</span>
         <span>balance: {{session('user')->balance}}$</span>
+        <input id='itemName' type="text" class="form-control" placeholder="itemName" >
+        <button id='searchItem'>search</button>
     </div>
 
     <div>
@@ -49,5 +51,7 @@
 
 <script>
 
-
+$("#searchItem").click(function(){
+        window.location.href = ('/searchItem/?n='+$('#itemName').val())
+    });
 </script>

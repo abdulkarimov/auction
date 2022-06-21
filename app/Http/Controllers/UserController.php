@@ -6,7 +6,7 @@ use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
-
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
@@ -25,6 +25,11 @@ class UserController extends Controller
         $item->remaining_time = $request->remainingTime;
         $item->user_id = session('user')->id;
         $item->save();
+
+        $response = Http::post('http://127.0.0.1:7000/api/green/', [
+            'text' =>  'добавлен новый лот => '.$item->name
+        ]);
+
         return true;
     }
 
@@ -103,5 +108,9 @@ class UserController extends Controller
         $user->rating -= 10;
         $user->save();
         return to_route('index');
+    }
+
+    public function searchItem(Request $request){
+        return view('index',['items' => Item::where('name', 'like', '%'.$request->n.'%')->get()]);
     }
 }
