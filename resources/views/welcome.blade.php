@@ -14,22 +14,31 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     </head>
-    <body style='margin-top: 200px'>
-        <h1 style='text-align: center'>Авторизация</h1>
+    <body style='margin-top: 200px; '>
         <div class='auth' >
-            <div class="input-group flex-nowrap">
-                <input id='emailAuth' type="text" class="form-control" placeholder="email" aria-label="Username" aria-describedby="addon-wrapping">
-            </div>
-            <div style='margin-top: 10px'>
-                <input id='passwordAuth' type="password" class="form-control" placeholder="Password" >
-            </div>
+
+        <h1 style="margin-left:160px">AUCTION</h1>
+            <form>
+                <div class="mb-3">
+                    <label for="emailAuth" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="emailAuth" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="passwordAuth" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="passwordAuth">
+                </div>
+            </form>
+            
             <div style='margin-top: 10px; margin-left: 25px'>
                 <button id='sighIN' type="button" class="btn btn-primary">sign in</button>
                 <button id='sighUP'  type="button" class="btn btn-danger">sign up</button>
             </div>
 
             <div style='margin-top: 10px'>
-                <a class="auth" href="{{route('auth.google')}}"><img style="   max-width: 200px;" src="../icon/btn_google_signin_light_pressed_web@2x.png" alt=""></a>
+                <a class="auth" href="{{route('auth.google')}}"><img style="   max-width: 300px;" src="../icon/btn_google_signin_light_pressed_web@2x.png" alt=""></a>
+            </div>
+            <div style='margin-top: 10px'>
+            <a class="auth" href="{{ route('facebook.login') }}"><img style="   max-width: 300px;" src="../icon/1280px-Facebook.svg.png" alt=""></a>
             </div>
         </div>
 
@@ -37,10 +46,11 @@
     </body>
 </html>
 <style>
+
     .auth{
         margin-left: auto;
         margin-right: auto;
-        max-width: 200px;
+        max-width: 500px;
     }
     
 </style>

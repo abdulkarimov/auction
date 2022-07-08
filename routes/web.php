@@ -28,6 +28,12 @@ Route::get('/index', function () {
 
 Route::get('auth/google',[AuthController::class, 'googleRedirect'])->name('auth.google');
 Route::get('auth/google/callback',[AuthController::class, 'loginWithGoogle']);
+
+Route::prefix('facebook')->name('facebook.')->group( function(){
+    Route::get('auth', [AuthController::class, 'loginUsingFacebook'])->name('login');
+    Route::get('callback', [AuthController::class, 'callbackFromFacebook'])->name('callback');
+});
+
 Route::post('auth/signIn',[AuthController::class, 'signIn'])->name('signIn');
 
 Route::get('registerIndex',[RegisterController::class, 'index'])->name('registerIndex');

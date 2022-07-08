@@ -11,11 +11,11 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <title>Document</title>
 </head>
-<body>
+<body >
 <div>
 
         @foreach($items as $key => $value)
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;margin: 0 auto;">
             <div class="card-body">
                 <h5 class="card-title">{{$value->name}}</h5>
                 <p class="card-text">описание - {{$value->description}}</p>

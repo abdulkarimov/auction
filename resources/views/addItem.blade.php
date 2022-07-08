@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <title>Document</title>
 </head>
-<body>
+<body style="width: 300px; margin: 0 auto;">
 
             <div class="input-group flex-nowrap" style='margin-top: 10px'>
                 <input id='name' type="text" class="form-control" placeholder="name" >

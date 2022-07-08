@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('status')->default('открыт');
             $table->string('category');
             $table->integer('start_price');
-            $table->string('begin_date');
+            // $table->string('begin_date');
             $table->string('description');
             $table->integer('price_end');
             $table->string('remaining_time');

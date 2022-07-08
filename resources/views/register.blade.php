@@ -14,8 +14,8 @@
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     </head>
     <body style='margin-top: 200px'>
-        <h1 style='text-align: center'>Регистрация</h1>
-        <div class='register' >
+        <h1 style='text-align: center;margin-bottom: 35px'>Регистрация</h1>
+        <div class='register'>
             <div class="input-group flex-nowrap">
                 <span class="input-group-text" id="addon-wrapping">@</span>
                 <input id='email' type="text" class="form-control" placeholder="email" aria-label="Username" aria-describedby="addon-wrapping">
@@ -42,7 +42,7 @@
     .register{
         margin-left: auto;
         margin-right: auto;
-        max-width: 200px;
+        max-width: 400px;
     }
     
 </style>
