@@ -17,7 +17,15 @@
                 <input id='name' type="text" class="form-control" placeholder="name" >
             </div>
             <div class="input-group flex-nowrap" style='margin-top: 10px'>
-                <input id='category' type="text" class="form-control" placeholder="category" >
+                <!-- <input id='category' type="text" class="form-control" placeholder="category" > -->
+                <select name="" id="category">
+                    <option value="gun">gun</option>
+                    <option value="microGun">microGun</option>
+                    <option value="home">home</option>
+                    <option value="microHome">microHome</option>
+                    <option value="microHome">car</option>
+                    <option value="microHome">microCar</option>
+                </select>
             </div>
             <div class="input-group flex-nowrap" style='margin-top: 10px'>
                 <input id='startPrice' type="text" class="form-control" placeholder="start price" >

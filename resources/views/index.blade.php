@@ -9,6 +9,28 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script src="{{url('js/app.js')}}"></script>
+        <script>$(function(){
+            const Http = window.axios;
+            const Echo = window.Echo;
+            const message = $('#message');
+
+            $('#sendMessage').click(function(){
+                    Http.post("{{url('send')}}", {
+                        'name' : 'name',
+                        'message' : message.val()
+                    }).then(()=>{
+                        message.val('');
+                    });
+            });
+
+            let channel = Echo.channel('channel-chat');
+            channel.listen('ChatEvent', function(data){
+                $('#data-message').append(`<strong>${data.message.name}</strong> : ${data.message.message} <br>`);
+            })
+
+   
+        })</script>
     <title>Document</title>
 </head>
 <body>
@@ -55,16 +77,26 @@
     <body>
 
     <div class="sidebar">
-        <a href="#">Category Item 1</a>
-        <br>
-        <br>
-        <a href="#">Category Item 1</a>
-        <br>
-        <br>
-        <a href="#">Category Item 1</a>
-        <br>
-        <br>
+        <h4 style='margin-left: 40px; margin-bottom:10px'>Categories</h4>
 
+        <a href="#" style='margin-left: 60px;'>gun</a>
+        <br>
+        <br>
+        <a href="#"style='margin-left: 60px;'>microGun</a>
+        <br>
+        <br>
+        <a href="#"style='margin-left: 60px;'>home</a>
+        <br>
+        <br>
+        <a href="#"style='margin-left: 60px;'>microHome</a>
+        <br>
+        <br>
+        <a href="#"style='margin-left: 60px;'>car</a>
+        <br>
+        <br>
+        <a href="#"style='margin-left: 60px;'>microCar</a>
+        <br>
+        <br>
     </div>
 
     <div class="sidebar2">
@@ -74,58 +106,15 @@
             </div>
             
             <div id="chatbox">
-                <div class="row">
-                    <span>10:26</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-                    <span>10:27</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-
-                    <span>10:28</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-
-                    <span>10:29</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-                    <span>10:26</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-                    <span>10:27</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-
-                    <span>10:28</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-
-                    <span>10:29</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-                    <span>10:26</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-                    <span>10:27</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-
-                    <span>10:28</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-
-                    <span>10:29</span>
-                    <span style="margin-bottom: 10px">hello word</span>
-
-                </div>
+                <div id='data-message'></div>
             </div>
 
-            
-            
-            <form name="message" action="">
-                <input name="usermsg" type="text" id="usermsg" size="63" />
-                <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
-            </form>
+            <div style="margin-left:35px">
+                <textarea id="message"rows="4" cols="50"></textarea>
+                <button id='sendMessage' class="btn btn-info" style='position: absolute;margin-top: 30px;margin-left: 5px;'> send</button>
+            </div>
+
+
         </div>    
     </div>
 

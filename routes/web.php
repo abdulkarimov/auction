@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
+
+use Illuminate\Http\Request;
+
+use App\Events\ChatEvent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +27,9 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('index', ['items' => Item::all()]);
 })->name('index');
+
+
+Route::post('send',[UserController::class, 'send']);
 
 
 

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\User;
+use App\Events\ChatEvent;
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Http;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -112,5 +113,18 @@ class UserController extends Controller
 
     public function searchItem(Request $request){
         return view('index',['items' => Item::where('name', 'like', '%'.$request->n.'%')->get()]);
+    }
+
+    public function send(Request $request){
+        $request->validate([
+            'message' => 'required'
+        ]);
+    
+        $message = [
+            'name' => session('user')->name,
+            'message' => $request->message
+        ];
+    
+        ChatEvent::dispatch($message);
     }
 }
