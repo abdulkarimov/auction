@@ -19,11 +19,12 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
             $table->string('status')->default('открыт');
-            $table->string('category');
+            $table->integer('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->integer('start_price');
-            // $table->string('begin_date');
             $table->string('description');
             $table->integer('price_end');
+            $table->integer('grade')->nullable();
             $table->string('remaining_time');
             $table->string('old_user')->nullable();
             $table->timestamps();

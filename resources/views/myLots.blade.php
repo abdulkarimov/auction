@@ -1,4 +1,4 @@
-!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,9 @@
 </head>
 <body >
 <div>
+    @if($items == '[]')
+        <h1>pusto</h1>
+    @endif
 
         @foreach($items as $key => $value)
         <div class="card" style="width: 18rem;margin: 0 auto;">
@@ -24,9 +27,11 @@
                 <li class="list-group-item">начальная цена -  {{$value->start_price}}$</li>
                 <li class="list-group-item">цена выкупа - <a href="#" class="card-link">{{$value->price_end}}$</a></li>
                 <li class="list-group-item"> окончание лота - {{$value->remaining_time}}</li>
+                <li class="list-group-item"> status -> {{$value->status}}</li>
+
             </ul>
             <div class="card-body">
-                @if($items[0]['status'] === 'куплен')
+                @if($items[0]['status'] === 'куплен' && $items[0]['grade'] != 1)
                     <a href="good/{{$value['id']}}" class="card-link">good</a>
                     <a href="bad/{{$value['id']}}" class="card-link">bad</a>
                 @endif

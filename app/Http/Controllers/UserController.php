@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Category;
 use App\Events\ChatEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -12,24 +13,25 @@ use Laravel\Socialite\Facades\Socialite;
 class UserController extends Controller
 {
     public function addItem(Request $request){
-        return view('addItem');
+        return view('addItem', ['categories' => Category::all()]);
     }
 
     public function itemStore(Request $request){
         $item = new Item;
+        $item->user_id = session('user')->id;
         $item->name = $request->name;
-        $item->category = $request->category;
+        // $item->status = ""
+        $item->category_id = $request->category_id;
         $item->start_price = $request->startPrice;
-        $item->begin_date = date("Y-m-d H:i:s");
         $item->description = $request->description;
         $item->price_end = $request->priceEnd;
+        // $item->grade = "";
         $item->remaining_time = $request->remainingTime;
-        $item->user_id = session('user')->id;
         $item->save();
 
-        $response = Http::post('http://127.0.0.1:7000/api/green/', [
-            'text' =>  'добавлен новый лот => '.$item->name
-        ]);
+        // $response = Http::post('http://127.0.0.1:7000/api/green/', [
+        //     'text' =>  'добавлен новый лот => '.$item->name
+        // ]);
 
         return true;
     }
@@ -81,25 +83,22 @@ class UserController extends Controller
     }
 
     public function showItems(Request $request){
-        $items = Item::where('user_id', session('user')->id)->where('status', 'открыт')->get();
-        if($items != '[]')
+        $items = Item::where('user_id', session('user')->id)->get();
         return view('myLots', ['items' => $items]);
-        return false;
-
     }
 
     public function myBuyLots(Request $request){
         $items = Item::where('user_id', session('user')->id)->where('status', 'куплен')->get();
-        if($items != '[]')
         return view('myLots', ['items' => $items]);
-        return false;
     }
 
     public function good(Request $request){
         $item = Item::where('id', $request->id)->first();
         $user = User::where('id', $item->old_user)->first();
         $user->rating += 10;
+        $item->grade = 1;
         $user->save();
+        $item->save();
         return to_route('index');
     }
 
@@ -107,7 +106,9 @@ class UserController extends Controller
         $item = Item::where('id', $request->id)->first();
         $user = User::where('id', $item->old_user)->first();
         $user->rating -= 10;
+        $item->grade = 1;
         $user->save();
+        $item->save();
         return to_route('index');
     }
 

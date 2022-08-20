@@ -68,6 +68,10 @@
                     <a href="/buy/{{$value['id']}}" class="card-link">buy</a>
                 @endif
 
+                @if (session('user')->is_admin == 1)
+                    <a href="/delete?item_id={{$value['id']}}" class="card-link">delete</a>
+                @endif
+
             </div>
         </div>
     </div>
@@ -78,25 +82,12 @@
 
     <div class="sidebar">
         <h4 style='margin-left: 40px; margin-bottom:10px'>Categories</h4>
+        @foreach($categories as $category)
+            <a href="index?category_id={{$category['id']}}" style='margin-left: 60px;'>{{$category['name']}}</a>
+            <br>
+            <br>
+        @endforeach
 
-        <a href="#" style='margin-left: 60px;'>gun</a>
-        <br>
-        <br>
-        <a href="#"style='margin-left: 60px;'>microGun</a>
-        <br>
-        <br>
-        <a href="#"style='margin-left: 60px;'>home</a>
-        <br>
-        <br>
-        <a href="#"style='margin-left: 60px;'>microHome</a>
-        <br>
-        <br>
-        <a href="#"style='margin-left: 60px;'>car</a>
-        <br>
-        <br>
-        <a href="#"style='margin-left: 60px;'>microCar</a>
-        <br>
-        <br>
     </div>
 
     <div class="sidebar2">
