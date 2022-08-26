@@ -65,10 +65,10 @@ class UserController extends Controller
         $item->status = 'куплен';    
 
         $user = User::where('id', session('user')->id)->first();
-        $user->balance -= $item->start_price;
+        $user->balance -= $item->price_end;
 
         $oldUser = User::where('id', $item->old_user)->first();
-        $oldUser->balance += $item->start_price;
+        $oldUser->balance += $item->price_end;
 
         $oldUser->save();        
         $user->save();        
@@ -113,7 +113,7 @@ class UserController extends Controller
     }
 
     public function searchItem(Request $request){
-        return view('index',['items' => Item::where('name', 'like', '%'.$request->n.'%')->get()]);
+        return view('index',['items' => Item::where('name', 'like', '%'.$request->n.'%')->get(),'categories' => Category::all()]);
     }
 
     public function send(Request $request){
